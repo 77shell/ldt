@@ -37,3 +37,10 @@ checkpatch:
 
 checkpatch2:
 	checkpatch.pl --no-tree --show-types --ignore LONG_LINE,LINE_CONTINUATIONS --terse -f $(_src) Makefile
+
+
+.PHONY: TAGS
+TAGS:
+	rm -rf TAGS
+	find . -regextype posix-egrep -iregex '.*\.(cpp|c|h)' | xargs etags -a
+	find . -iname Makefile.* | xargs etags -a
